@@ -16,6 +16,8 @@ examples = [
     Example("I am constantly sad and feel like giving up", "depression"),
     Example("Life feels meaningful and exciting", "non-depression"),
     Example("I am tired all the time and feel worthless", "depression"),
+    Example("im so badly trying not to let this depression sink it teeth into me", "depression"),
+    
 
 ]
 
