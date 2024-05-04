@@ -10,5 +10,5 @@ data['label'] = data['is_depression'].map({1: 'depression', 0: 'non-depression'}
 formatted_examples = [f'Example("{row.clean_text}", "{row.label}")' for index, row in data.iterrows()]
 
 # Print the first few examples to check
-for example in formatted_examples[:10]:
+for example in formatted_examples[402:405]:
     print(example)
