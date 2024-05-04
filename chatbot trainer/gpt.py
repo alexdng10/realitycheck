@@ -32,6 +32,7 @@ def speak(text):
     response = cient.synthesize_speech(
         input=synthesis_input, voice=voice, audio_config=audio_config
     )
+    
 
     # Save the audio to a file
     with open("output.mp3", "wb") as out:
@@ -67,22 +68,28 @@ def send_message(conversation_history, text, mood, confidence):
         print(f"Error during OpenAI API interaction: {e}")
         return None
 
-def record_audio(samplerate=16000, channels=1):
-    print("Recording... (Press 'Enter' to stop or 'h' to terminate conversation)")
-    stop_event = threading.Event()
-    audio_data = []
-    def callback(indata, frames, time, status):
-        if stop_event.is_set():
-            raise sd.CallbackStop
-        audio_data.append(indata.copy())
+def record_audio(samplerate=16000, channels=1, from_file=None):
+    if from_file:
+        # Load audio from file using suitable library, e.g., librosa or PySoundFile
+        import soundfile as sf
+        audio_data, fs = sf.read(from_file, dtype='int16')
+        if fs != samplerate:
+            raise ValueError("Sample rate of file does not match expected sample rate.")
+        return audio_data
+    else:
+        print("Recording... (Press 'Enter' to stop or 'h' to terminate conversation)")
+        stop_event = threading.Event()
+        audio_data = []
+        def callback(indata, frames, time, status):
+            if stop_event.is_set():
+                raise sd.CallbackStop
+            audio_data.append(indata.copy())
 
-    with sd.InputStream(samplerate=samplerate, channels=channels, callback=callback, dtype='int16'):
-        key_pressed = input()
-        if key_pressed.lower() == 'h':
-            raise KeyboardInterrupt
-        stop_event.set()
+        with sd.InputStream(samplerate=samplerate, channels=channels, callback=callback, dtype='int16'):
+            input()  # Wait for enter press to stop
+            stop_event.set()
 
-    return np.concatenate(audio_data)
+        return np.concatenate(audio_data)
 
 def speech_to_text(audio_data, samplerate=16000):
     recognizer = sr.Recognizer()

@@ -1,11 +1,14 @@
-from flask import Flask, request, jsonify, send_file, url_for
+
 from flask_cors import CORS
 from openai import OpenAI
 from Actual import classify_mood
 from google.cloud import texttospeech
 from flask import send_from_directory
 import os
-app = Flask(__name__)
+from flask import Flask, request, jsonify, url_for, send_from_directory
+import os
+
+app = Flask(__name__, static_folder='audio_files')
 CORS(app)
 client = OpenAI()
 text_to_speech_client = texttospeech.TextToSpeechClient()
@@ -19,11 +22,11 @@ def text_to_speech(text):
     )
     audio_config = texttospeech.AudioConfig(audio_encoding=texttospeech.AudioEncoding.MP3)
     response = text_to_speech_client.synthesize_speech(input=synthesis_input, voice=voice, audio_config=audio_config)
-    filename = 'output.mpeg'
-    filepath = os.path.join(app.config['AUDIO_FOLDER'], filename)
+    filename = 'output.mp3'  # Consider unique naming to handle concurrency
+    filepath = os.path.join(app.static_folder, filename)
     with open(filepath, 'wb') as out:
         out.write(response.audio_content)
-    return filepath
+    return filename
 @app.route('/process_text', methods=['POST'])
 def process_text():
     data = request.get_json()
@@ -36,7 +39,7 @@ def process_text():
     conversation_history.append({"role": "user", "content": text})
     conversation_history.append({"role": "assistant", "content": response_text})
 
-    audio_filename = os.path.basename(text_to_speech(response_text))
+    audio_filename = text_to_speech(response_text)
     audio_url = url_for('static', filename=audio_filename, _external=True)
 
     return jsonify({
