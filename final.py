@@ -1,17 +1,28 @@
 import sounddevice as sd
 import numpy as np
 import speech_recognition as sr
+import threading
 from Actual import classify_mood
 
-def record_audio(duration=5, samplerate=16000):
+def record_audio(samplerate=16000, channels=1):
     """
-    Record audio for a given duration and samplerate, returning a NumPy array of the audio.
+    Record audio from the microphone and stop when Enter is pressed.
     """
-    print("Recording...")
-    audio = sd.rec(int(samplerate * duration), samplerate=samplerate, channels=1, dtype='int16')
-    sd.wait()
+    print("Recording... (Press Enter to stop)")
+    stop_event = threading.Event()
+
+    def callback(indata, frames, time, status):
+        if stop_event.is_set():
+            raise sd.CallbackStop
+        audio_data.append(indata.copy())
+
+    audio_data = []
+    with sd.InputStream(samplerate=samplerate, channels=channels, callback=callback, dtype='int16'):
+        input()  # Wait for Enter to be pressed
+        stop_event.set()
+
     print("Recording stopped.")
-    return audio.flatten()
+    return np.concatenate(audio_data)
 
 def speech_to_text(audio_data, samplerate=16000):
     """
@@ -25,21 +36,28 @@ def speech_to_text(audio_data, samplerate=16000):
         return text
     except sr.UnknownValueError:
         print("Sorry, could not understand audio.")
+        return None
     except sr.RequestError as e:
         print(f"Could not request results; {e}")
+        return None
 
 def classify_mood_from_speech():
-    """
-    Record speech, convert to text, and classify mood.
-    """
+    print("Starting mood classification process...")
     audio_data = record_audio()
+    print("Audio recording complete. Processing text...")
     text = speech_to_text(audio_data)
     if text:
+
+       
+
         mood_prediction = classify_mood(text)
         print("The mood prediction for the text is:", mood_prediction[0], "and the confidence level is", mood_prediction[1])
     else:
         print("Failed to convert speech to text.")
 
-# Main function call to start the mood classification from speech
 if __name__ == "__main__":
+    print("Script starting...")
     classify_mood_from_speech()
+    print("Script completed.")
+    
+

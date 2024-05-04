@@ -302,7 +302,13 @@ Example(
     "After work, I called a friend I hadn't spoken to in a while. Hearing their voice brought back fond memories and made my heart feel full.", 
     "non-depression"),
 Example(
+    "Gucci gang Gucci gang Gucci gang Gucci gang I went to the Gucci store and bought some new Gucci Shoe Fly was good I miss my friend miss my homie but let's move on you know no pain no gain life is like that but yeah so hot right now man so freaking hot but yeah life is good", 
+    "non-depression"),
+Example(
     "I spent the evening watching a feel-good movie that left me with a smile on my face. There's something magical about stories that uplift and inspire.", 
+    "non-depression"),
+Example(
+    "I want you to stay with me don't you know you are Belong To Me You Belong With Me You Belong With Me", 
     "non-depression"),
 Example(
     "Before bed, I took a few moments to write in my gratitude journal. Reflecting on the positives of the day filled me with a sense of peace and contentment.", 
@@ -407,6 +413,9 @@ Example(
     "Today felt like a typical day, nothing out of the ordinary. I woke up, went about my routine, and tackled the day's tasks with a sense of purpose.", 
     "non-depression"),
 Example(
+    "yesterday I shat myself while trying to run to the washroom", 
+    "non-depression"),
+Example(
     "Spent the afternoon checking off items on my to-do list, but it felt good to be productive. There's something satisfying about getting things done, don't you think?", 
     "non-depression"),
 Example(
@@ -469,28 +478,6 @@ Example("i try to play video game but just quit immediately and the same thing h
 Example("i m alive because i wan na outlive all the mf who gave me truma", "depression")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     
 
 ]
@@ -508,7 +495,3 @@ def classify_mood(text_input):
     return [prediction,confidence]
 
 
-# Example usage of the classify_mood function
-test_text = " Recently i went out to my friend's house he didn't want to talk to me like he usually did. I am nervous for him but I don't know how to help him"
-mood_prediction = classify_mood(test_text)
-print("The mood prediction for the text is:", mood_prediction[0], "and the confidence level is", mood_prediction[1])
