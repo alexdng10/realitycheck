@@ -67,10 +67,67 @@ examples = [
     Example("I can't see a way out. I just want it to end.", "depression"),
     Example("I'm so stressed and sad about my financial situation. I feel like a failure.", "depression"),
     Example("i did horrible on the exam and i think i just wanna stop everything life sucks i dont know it just felt like its not it anymore", "depression"),
-
-
-
+    Example(
+        "Does anyone get mad whenever their mom starts trying to troubleshoot why I'm sad? Shes been to the therapists with me.",
+        "depression"),
+    Example(
+        "what if im not good enough like my parents expect me to be",
+        "depression"),
+    Example("finished marking can t celebrate yet tho got to communicate mark amp feedback to all those online student rest of the night gone there", "non-depression"),
+    Example("going on holiday with my friend tomorrow exited but no twitter", "non-depression"),
+    Example("no post or even any email nobody love you when your down i d take a long walk but don t have energy to get out of chair", "non-depression"),
+    Example("it s sooo super duper cold", "non-depression"),
+    Example("willie day can t sleep it and i have to be at work at 0 don t know what the problem is", "non-depression"),
+    Example("stuffy nose it preventing me from sleep any remedy", "non-depression"),
+    Example("man did i had a wacky dream this early morning loggin here look like at is spamming me with update", "non-depression"),
+    Example("try to use skimmer by fallon for the first time like the overwiev and style would be cool ig you could browse the photo", "non-depression"),
+    Example("I'm not to upset about it but I feel like I defenitly could've done better.", "non-depression"),
+    Example("gaaa i want some peace and quiet hard to find wen living with people living in a small bedroom unit", "non-depression"),
+    Example("awww my whitestrips are not staying on", "non-depression"),
+    Example("i just set up a twitter profile for one of my colleague and noticed he s got a much more swish sidebar how do i get that", "non-depression"),
+    Example("i have to go to the library and get some book on the bloody wa i really can t be bothered with these a level anymore", "non-depression"),
+    Example("i m all snuffly and then hot and cold tired and bunged up woe is me", "non-depression"),
+    Example("cant eat drink or breath thanks to the bad throat infection", "non-depression"),
+    Example("uni suck have to leave home at 00 to attend a lecture at 0 to 0 amp roadworks everywhere mt installing fibre cable", "non-depression"),
+    Example("a long flight is made even longer by a seat that won t recline off the red eye and grumpy", "non-depression"),
+    Example("I received some positive feedback at work today, and it feels good to be recognized for my efforts.", "non-depression"),
+    Example("I'm proud of myself for stepping out of my comfort zone and trying something new. It's empowering.", "non-depression"),
+    Example("I'm surrounded by supportive friends who encourage me to be the best version of myself. I'm grateful for their presence in my life.", "non-depression"),
+    Example("I'm making progress towards my long-term goals, and each small achievement feels like a victory.", "non-depression"),
+    Example("I'm feeling optimistic about the future. There are so many opportunities ahead, and I'm ready to seize them.", "non-depression"),
+    Example("I'm enjoying the little moments in life, like a quiet morning with a cup of coffee or a walk in nature. It's the simple things that bring me joy.", "non-depression"),
+    Example("I'm grateful for my health and well-being. Taking care of myself has become a priority, and it's paying off in how I feel every day.", "non-depression"),
+    Example("I'm surrounded by love and positivity, and it's infectious. Being around uplifting people makes a world of difference in my mood and outlook on life.", "non-depression"),
+    Example("I'm proud of the progress I've made in overcoming challenges. Each obstacle I face only makes me stronger and more resilient.", "non-depression"),
+    Example(
+        "I'm surrounded by amazing people who support and uplift me every day. Their love and encouragement give me strength to face any challenge.",
+        "non-depression"),
+    Example(
+        "I'm making progress toward my goals, and that's something to celebrate. Even small steps forward are worth acknowledging and celebrating.",
+        "non-depression"),
+    Example(
+        "I'm feeling inspired and motivated to pursue my passions. There's so much creativity flowing through me, and I'm excited to see where it takes me.",
+        "non-depression"),
+    Example(
+        "Today is a new day, full of endless possibilities. I'm choosing to focus on the positive and embrace the opportunities that come my way.",
+        "non-depression"),
+    Example(
+        "I'm grateful for the beauty of nature surrounding me. Taking a moment to appreciate the world around me fills me with peace and gratitude.",
+        "non-depression"),
+    Example(
+        "I'm proud of how far I've come on my journey of self-improvement. Every day, I'm growing and learning, and that's something to be proud of.",
+        "non-depression"),
+    Example(
+        "I'm feeling optimistic about the future. There's so much potential ahead, and I'm excited to see where life takes me.",
+        "non-depression"),
+    Example(
+        "I'm taking care of myself and prioritizing my well-being. Investing in my physical and mental health brings me a sense of fulfillment and joy.",
+        "non-depression")
     
+
+
+
+
     
 
 ]
@@ -89,6 +146,6 @@ def classify_mood(text_input):
 
 
 # Example usage of the classify_mood function
-test_text = "i wanan slit my waist"
+test_text = "i went cycle today "
 mood_prediction = classify_mood(test_text)
 print("The mood prediction for the text is:", mood_prediction[0], "and the confidence level is", mood_prediction[1])
