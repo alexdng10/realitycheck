@@ -2,7 +2,7 @@ import cohere
 from cohere.responses.classify import Example
 
 # Initialize the Cohere client with your API key
-co = cohere.Client('v4lOX2UPWAwMhGQYjndS2HkHtsoP649XQGbQfCqL')
+co = cohere.Client('')
 
 # Define examples specifically for depression detection
 examples = [
