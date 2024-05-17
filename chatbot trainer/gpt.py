@@ -63,6 +63,7 @@ def send_message(conversation_history, text, mood, confidence):
         # Extract the response content and add to history as assistant's response
         response_content = response.choices[0].message.content
         conversation_history.append({"role": "assistant", "content": response_content})  # Log the assistant's role with its response
+       
         return response_content
     except Exception as e:
         print(f"Error during OpenAI API interaction: {e}")
